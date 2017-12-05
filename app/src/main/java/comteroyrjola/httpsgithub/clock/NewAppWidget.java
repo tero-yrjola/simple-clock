@@ -39,11 +39,11 @@ public class NewAppWidget extends AppWidgetProvider {
                                 int appWidgetId) {
         Date rightNow = calendar.getTime();
         String currentTime = "KELLO: ";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         currentTime += dateFormat.format(rightNow);
 
         String currentDate = "PVM: ";
-        dateFormat = new SimpleDateFormat("HH:mm");
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         currentDate += dateFormat.format(rightNow);
 
         String nightOrDay = "";
@@ -57,9 +57,8 @@ public class NewAppWidget extends AppWidgetProvider {
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-        views.setImageViewBitmap(R.id.imgtime, BuildUpdate(currentTime, 100, context));
         views.setImageViewBitmap(R.id.imgdate, BuildUpdate(currentDate, 50, context));
-        views.setImageViewBitmap(R.id.imgdate, BuildUpdate(nightOrDay, 125, context));
+        views.setImageViewBitmap(R.id.imgtime, BuildUpdate(currentTime + "\n" + nightOrDay, 100, context));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
