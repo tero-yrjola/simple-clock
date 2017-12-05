@@ -92,13 +92,26 @@ public class MainActivity extends AppCompatActivity {
             else data[1] = dateFormat.format(rightNow);
             }
 
+            dateFormat = new SimpleDateFormat("EEEE");
+        String dayEng = dateFormat.format(rightNow);
+        String dayFin = "";
+        if (dayEng.startsWith("Mon")) dayFin = "Maanantai";
+        else if (dayEng.startsWith("Tue")) dayFin = "Tiistai";
+        else if (dayEng.startsWith("Wed")) dayFin = "Keskiviikko";
+        else if (dayEng.startsWith("Thu")) dayFin = "Torstai";
+        else if (dayEng.startsWith("Fri")) dayFin = "Perjantai";
+        else if (dayEng.startsWith("Sat")) dayFin = "Lauantai";
+        else if (dayEng.startsWith("Sun")) dayFin = "Sunnuntai";
+
+        data[1] += "\n" + dayFin;
+
         String nightOrDay = "";
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
         if (hours < 8) nightOrDay = "YÖ \uD83C\uDF19";
         else if(hours < 11) nightOrDay = "AAMU ⛅";
         else if (hours < 16) nightOrDay = "PÄIVÄ \uD83C\uDF1E";
         else if( hours < 21) nightOrDay = "ILTA ⛅";
-        else nightOrDay = "YÖ";
+        else nightOrDay = "YÖ\uD83C\uDF19";
 
         data[2] = nightOrDay;
 
