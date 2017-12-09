@@ -2,6 +2,7 @@ package comteroyrjola.httpsgithub.clock;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -24,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
         final TextView date = findViewById(R.id.dateView);
         final TextView time = findViewById(R.id.clockView);
         final TextView dayOrNight = findViewById(R.id.dayOrNight);
+
+        date.setTextSize(TypedValue.COMPLEX_UNIT_PX, 100f);
+        time.setTextSize(TypedValue.COMPLEX_UNIT_PX, 125f);
+        dayOrNight.setTextSize(TypedValue.COMPLEX_UNIT_PX, 150f);
 
         Thread t = new Thread() {
 
@@ -93,17 +98,18 @@ public class MainActivity extends AppCompatActivity {
             }
 
             dateFormat = new SimpleDateFormat("EEEE");
-        String dayEng = dateFormat.format(rightNow);
-        String dayFin = "";
-        if (dayEng.startsWith("Mon")) dayFin = "Maanantai";
-        else if (dayEng.startsWith("Tue")) dayFin = "Tiistai";
-        else if (dayEng.startsWith("Wed")) dayFin = "Keskiviikko";
-        else if (dayEng.startsWith("Thu")) dayFin = "Torstai";
-        else if (dayEng.startsWith("Fri")) dayFin = "Perjantai";
-        else if (dayEng.startsWith("Sat")) dayFin = "Lauantai";
-        else if (dayEng.startsWith("Sun")) dayFin = "Sunnuntai";
+        String dayLocal = dateFormat.format(rightNow);
+//        String dayFin = "";
+//        if (dayEng.startsWith("Mon")) dayFin = "Maanantai";
+//        else if (dayEng.startsWith("Tue")) dayFin = "Tiistai";
+//        else if (dayEng.startsWith("Wed")) dayFin = "Keskiviikko";
+//        else if (dayEng.startsWith("Thu")) dayFin = "Torstai";
+//        else if (dayEng.startsWith("Fri")) dayFin = "Perjantai";
+//        else if (dayEng.startsWith("Sat")) dayFin = "Lauantai";
+//        else if (dayEng.startsWith("Sun")) dayFin = "Sunnuntai";
+//        else dayFin = dayEng;
 
-        data[1] += "\n" + dayFin;
+        data[1] = dayLocal.toUpperCase() + "\n" + data[1];
 
         String nightOrDay = "";
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
